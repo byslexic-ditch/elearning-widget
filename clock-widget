@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Clock Widget</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0; /* Optional background for preview */
+    }
+    .clock-widget {
+      position: relative;
+      width: 300px;
+      height: 150px;
+      background-image: url("https://i.pinimg.com/736x/90/27/31/902731919ac7f10131b91420c3ae1794.jpg");
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .time {
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 48px;
+      color: black;
+      display: flex;
+      gap: 10px;
+    }
+    .time .digit {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 80px;
+      perspective: 1000px;
+    }
+    .digit .number {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      line-height: 80px;
+      text-align: center;
+      backface-visibility: hidden;
+    }
+    .digit .top,
+    .digit .bottom {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .digit .top {
+      transform: rotateX(0deg);
+      z-index: 2;
+    }
+    .digit .bottom {
+      transform: rotateX(90deg);
+    }
+    .digit.flipping .top {
+      animation: flipTop 0.5s forwards;
+    }
+    .digit.flipping .bottom {
+      animation: flipBottom 0.5s forwards;
+    }
+    @keyframes flipTop {
+      0% {
+        transform: rotateX(0deg);
+      }
+      100% {
+        transform: rotateX(-90deg);
+      }
+    }
+    @keyframes flipBottom {
+      0% {
+        transform: rotateX(90deg);
+      }
+      100% {
+        transform: rotateX(0deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="clock-widget">
+    <div class="time">
+      <div class="digit hour" data-digit="hour">
+        <div class="number top">00</div>
+        <div class="number bottom">00</div>
+      </div>
+      :
+      <div class="digit minute" data-digit="minute">
+        <div class="number top">00</div>
+        <div class="number bottom">00</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const hourDigit = document.querySelector('.digit.hour');
+    const minuteDigit = document.querySelector('.digit.minute');
+
+    function updateTime() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+
+      updateDigit(hourDigit, hours);
+      updateDigit(minuteDigit, minutes);
+    }
+
+    function updateDigit(digitElement, newValue) {
+      const currentTop = digitElement.querySelector('.top').textContent;
+      const currentBottom = digitElement.querySelector('.bottom').textContent;
+
+      if (currentTop !== newValue) {
+        digitElement.classList.add('flipping');
+        digitElement.querySelector('.bottom').textContent = newValue;
+
+        setTimeout(() => {
+          digitElement.querySelector('.top').textContent = newValue;
+          digitElement.classList.remove('flipping');
+        }, 500);
+      }
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime(); // Initialize on load
+  </script>
+</body>
+</html>
+ 
