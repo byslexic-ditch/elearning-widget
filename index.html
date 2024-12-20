@@ -16,12 +16,12 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       margin: auto;
       transition: box-shadow 0.3s ease, border-color 0.3s ease; /* Smooth transition for effects */
+      cursor: pointer; /* Makes the entire widget interactive */
     }
     .widget img {
       width: 200px; /* Width of the icon */
       height: 200px; /* Height of the icon */
       margin-bottom: 10px;
-      cursor: pointer; /* Changes cursor to a pointer on hover */
     }
     .widget:hover {
       border-color: #07f; /* Changes border color on hover */
@@ -36,6 +36,8 @@
       color: #007BFF;
       font-size: 16px;
       font-weight: bold;
+      display: block; /* Ensures the link is clickable */
+      margin-top: 10px; /* Adds some space between the text and the link */
     }
     .widget a:hover {
       text-decoration: underline;
@@ -43,12 +45,10 @@
   </style>
 </head>
 <body>
-  <div class="widget">
+  <div class="widget" onclick="window.open('https://elearning.utdallas.edu/ultra/institution-page', '_blank');">
     <img src="https://i.pinimg.com/736x/87/99/c1/8799c1a17a6be6a601068c51b7b5ffc6.jpg" alt="eLearning">
     <p>eLearning</p> <!-- Text directly below the image -->
-    <a href="https://elearning.utdallas.edu/ultra/institution-page" target="_blank">
-      eLearning
-    </a>
+    <a href="https://elearning.utdallas.edu/ultra/institution-page" target="_blank">Go to eLearning</a>
   </div>
 </body>
 </html>
