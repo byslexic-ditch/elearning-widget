@@ -15,35 +15,13 @@
       background-color: #f9f9f9;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       margin: auto;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease; /* Smooth transition for effects */
     }
     .widget img {
       width: 200px; /* Width of the icon */
       height: 200px; /* Height of the icon */
       margin-bottom: 10px;
+      cursor: pointer; /* Changes cursor to a pointer on hover */
     }
-    .widget p {
-      margin: 0; /* Removes extra spacing */
-      font-size: 18px; /* Slightly larger font for better readability */
-    }
-    .widget a {
-      text-decoration: none;
-      color: #007BFF;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    .widget a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <div class="widget">
-    <img src="https://i.pinimg.com/736x/87/99/c1/8799c1a17a6be6a601068c51b7b5ffc6.jpg" alt="eLearning">
-    <p>eLearning</p> <!-- Text directly below the image -->
-    <a href="https://elearning.utdallas.edu/ultra/institution-page" target="_blank">
-      eLearning
-    </a>
-  </div>
-</body>
-</html>
-
+    .widget:hover {
+      border-color: #07f; /* Changes border c
